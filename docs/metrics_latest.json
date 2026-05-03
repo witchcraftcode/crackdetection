@@ -1,0 +1,19 @@
+{
+  "hardware": {
+    "platform": "macOS-26.4.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "processor": "arm",
+    "cpu_count": 8,
+    "gpu_count": 0
+  },
+  "deployment": {
+    "model_load_sec": 0.1362472090004303,
+    "inference_latency_ms_mean": 32.486406866519246,
+    "inference_latency_ms_median": 32.48793700004171,
+    "throughput_images_per_sec": 30.7821053928438,
+    "rss_before_load_mb": 501.125,
+    "rss_after_load_mb": 949.390625,
+    "rss_after_predict_mb": 968.171875
+  },
+  "dataset_error": "Dataset path not found: ../input/surface-crack-detection"
+}
