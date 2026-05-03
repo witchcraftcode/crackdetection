@@ -1,0 +1,23 @@
+numpy
+pandas
+matplotlib
+seaborn
+pillow
+opencv-python
+scikit-image
+scikit-learn
+tensorflow
+keras
+fastapi
+uvicorn[standard]
+python-multipart
+jupyter
+notebook
+
+# Optional (imported in notebook but not required for CNN baseline)
+xgboost
+lightgbm
+catboost
+
+# Development
+pytest
