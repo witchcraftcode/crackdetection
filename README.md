@@ -88,7 +88,9 @@ Build and run the API:
 
 ```bash
 docker build -t concrete-crack-api .
-docker run --rm -p 8000:8000 concrete-crack-api
+docker run --rm -p 8000:8000 \
+  -v "$(pwd)/Model_Last_Prediction.h5:/app/Model_Last_Prediction.h5:ro" \
+  concrete-crack-api
 ```
 
 ## Tests
