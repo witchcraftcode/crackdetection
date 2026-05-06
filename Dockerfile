@@ -16,6 +16,7 @@ RUN pip install --default-timeout=100 --no-cache-dir -r requirements.txt
 COPY model.py .
 COPY src ./src
 COPY app.py .
+COPY Model_Last_Prediction.h5 .
 
 # Expose port
 EXPOSE 8000

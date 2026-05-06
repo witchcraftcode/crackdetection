@@ -1,6 +1,7 @@
 """CLI inference for binary crack detection model."""
 
 import argparse
+from pathlib import Path
 from typing import Any
 
 import cv2
@@ -8,6 +9,25 @@ import numpy as np
 
 
 LABELS = {0: "Negative", 1: "Positive"}
+
+
+def validate_model_artifact(model_path: str) -> None:
+    """Fail early with a useful message when the model artifact is missing."""
+    path = Path(model_path)
+    if not path.exists():
+        raise FileNotFoundError(
+            f"Model file not found: {model_path}. "
+            "Place Model_Last_Prediction.h5 in the project root or pull Git LFS files with `git lfs pull`."
+        )
+
+    with path.open("rb") as file:
+        header = file.read(128)
+
+    if header.startswith(b"version https://git-lfs.github.com/spec"):
+        raise RuntimeError(
+            f"{model_path} is a Git LFS pointer, not the actual model file. "
+            "Install Git LFS and run `git lfs pull` to download the trained model."
+        )
 
 
 def preprocess_image(image_path: str, target_size=(200, 200)) -> np.ndarray:
@@ -21,6 +41,7 @@ def preprocess_image(image_path: str, target_size=(200, 200)) -> np.ndarray:
 
 def load_keras_model(model_path: str) -> Any:
     """Load a Keras model lazily so imports stay lightweight and testable."""
+    validate_model_artifact(model_path)
     from tensorflow.keras.models import load_model
 
     return load_model(model_path)

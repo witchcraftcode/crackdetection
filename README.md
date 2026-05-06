@@ -42,7 +42,23 @@ Run the notebook:
 1. Open `risk-flag.ipynb`
 2. Execute cells in order
 3. The trained model is saved as `Model_Last_Prediction.h5`
-4. Place the saved model in the project root before running inference or the API
+4. Keep the saved model in the project root before running inference or the API
+
+## Model Artifact
+The repository is configured to store trained Keras model files with Git LFS:
+
+```bash
+git lfs install
+git lfs pull
+```
+
+After cloning, verify that the real model file is present:
+
+```bash
+ls -lh Model_Last_Prediction.h5
+```
+
+The file should be hundreds of MB. If it is only a small text file, Git LFS has not downloaded the real model yet.
 
 ## Inference
 ```bash
@@ -88,9 +104,7 @@ Build and run the API:
 
 ```bash
 docker build -t concrete-crack-api .
-docker run --rm -p 8000:8000 \
-  -v "$(pwd)/Model_Last_Prediction.h5:/app/Model_Last_Prediction.h5:ro" \
-  concrete-crack-api
+docker run --rm -p 8000:8000 concrete-crack-api
 ```
 
 ## Tests
