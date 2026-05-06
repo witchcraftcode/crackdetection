@@ -10,13 +10,27 @@ This project predicts whether a concrete surface image contains a crack:
 The current training workflow is in the notebook `risk-flag.ipynb`, and reusable code is available in `src/`.
 
 ## Project Structure
-- `risk-flag.ipynb` - main training and experimentation notebook
-- `src/model.py` - reusable CNN model builder
-- `src/inference.py` - CLI inference for single-image prediction
-- `app.py` - FastAPI service for image upload prediction
-- `model.py` - cached model-loading helper used by the API
-- `Dockerfile` - containerized API runtime
-- `requirements.txt` - Python dependencies
+```text
+.
+├── app.py                         # FastAPI service for image upload prediction
+├── model.py                       # Cached model-loading helper used by the API
+├── Model_Last_Prediction.h5       # Trained Keras model stored with Git LFS
+├── src/
+│   ├── model.py                   # Reusable CNN model builder
+│   └── inference.py               # Preprocessing and single-image prediction logic
+├── scripts/
+│   └── evaluate_metrics.py        # Dataset, classification, and inference metrics script
+├── tests/
+│   └── test_imports_and_preprocess.py
+├── docs/
+│   ├── METRICS_AND_RESULTS.md     # Human-readable metrics report
+│   └── metrics_latest.json        # Latest machine-readable metrics output
+├── risk-flag.ipynb                # Main training and experimentation notebook
+├── Dockerfile                     # Containerized API runtime
+├── requirements.txt               # Python dependencies
+├── .gitattributes                 # Git LFS tracking rules for model files
+└── .gitignore
+```
 
 ## Dataset
 Expected folder layout:
